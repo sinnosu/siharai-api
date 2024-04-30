@@ -1,0 +1,26 @@
+# Go の公式イメージをベースに使用します。バージョンはプロジェクトの要求に応じて選択してください。
+FROM golang:1.19
+
+# SQLite3 のインストール
+RUN apt-get update && apt-get install -y postgresql-client
+
+# アプリケーションのソースコードを格納するディレクトリを作成
+WORKDIR /app
+
+# Go モジュールを利用するための環境変数を設定
+ENV GO111MODULE=on
+
+# ここではプロジェクトルートにある go.mod と go.sum もコピーします。
+# COPY go.mod go.sum ./
+# RUN go mod download
+
+# ホストマシンから現在のディレクトリのコンテンツをコンテナにコピー
+COPY . .
+
+# Go の依存関係をダウンロード
+# RUN go mod download
+
+# src ディレクトリ内の main.go をビルド
+# RUN go build -o main ./src/main.go
+# コンテナ起動時に実行されるコマンド
+# CMD ["./main"]

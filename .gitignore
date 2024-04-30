@@ -1,0 +1,5 @@
+db/sqldef/*
+
+cookies.txt
+
+.env
